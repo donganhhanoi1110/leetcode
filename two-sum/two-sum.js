@@ -1,65 +1,52 @@
 /**
+ * https://leetcode.com/problems/two-sum/
+ *
  * @param {number[]} nums
  * @param {number} target
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
-    var result = []
-    //sort nums
-    nums = nums.sort(function(a,b){return a - b})
-    var i =0;
-    var j = i + 1;
-    while ((nums[i] + nums[j]) <= target) {
-        if ((nums[i] + nums[j]) === target) {
-            result[0] = i
-            result[1] = j
-            return;
-        } else if ((nums[i] + nums[j]) > target) {
-            i++;
-            j = i+1;
-            continue;
-        }
-        j++
+    console.log('>>Start two-sum1<<')
+    var result = [];
+
+    //Add item to Map
+    const mapTemp = new Map();
+    for (let i = 0; i < nums.length; i++) {
+        mapTemp.set(nums[i], i)
     }
-    // for (let i = 0; i < nums.length; i++) {
-    //     if (nums[i] + nums[i+1])
-    // }
-   return result;
+    console.log('Original Map: ' + [...mapTemp])
+
+    for (let i = 0; i < nums.length; i++) {
+        let complement = target - nums[i]
+        if (mapTemp.get(complement) && mapTemp.get(complement) !== i) {
+            return [i, mapTemp.get(complement)]
+        }
+    }
+    return result
 };
 
-function testing() {
-    // Tellingh VIM Cheat Sheet
-
-    // Testing VIM Cheat Sheet
-    // Testing VIM Cheat Sheet
-    // Tellingh VIM Cheat Sheet
-
-    //Nguyen Anh Minh
-
-
-
-}
-
-
-
 var twoSum2 = function (nums, target) {
+    console.log('>>Start two-sum<<')
     var result = [];
     //as the requirement two sum
     var k = 2;
     if (nums.length < k) return []
 
-    var mapTemp = new Map()
+    //Add item to Map
+    const mapTemp = new Map();
     for (let i = 0; i < nums.length; i++) {
-        mapTemp.set(i, nums[i])
+        mapTemp.set(nums[i], i)
     }
-    for (const [key, value] of Object.entries(object)) {
-        console.log(key, value);
-    }
+    console.log('Original Map: ' + [...mapTemp])
+    const sortedMap = new Map([...mapTemp.entries()].sort((a,b) => a[1] - b[1]))
+    const sortedArr = [...sortedMap.entries()]
+    console.log('Sorted Map: ' + [...sortedMap])
     //first sum
     var sum = Number.MIN_VALUE;
     for (let i = 0; i < k; i++) {
-        sum += nums[i]
-        result.push(i)
+        let [key, value] = sortedArr[i];
+        sum += value
+        result.push(key)
     }
 
     if (sum === target) {
@@ -69,16 +56,22 @@ var twoSum2 = function (nums, target) {
         result = []
     }
 
+    //slide the 2-window to next position
     for (let i = k; i < nums.length ; i++) {
-        sum = sum - nums[i-k] + nums[i];
-        result.push(i-1)
-        result.push(i)
+
+        sum = sum - sortedArr[i-k][1] + sortedArr[i][1];
+        result.push(sortedArr[i-1][0])
+        result.push(sortedArr[i][0])
         if (sum === target)
             return result
     }
+    return []
 }
 
-// console.log(twoSum([2,5,7,11,15], 12))
-// console.log(twoSum2([2,5,7,11,15], 12))
-console.log(twoSum2([3,2,4], 6))
-console.log(twoSum2([2], 12))
+/**
+ * Test twoSum2 failed with [3,2,4], target=6
+ */
+console.log(twoSum([2,5,7,11,15], 12))
+console.log(twoSum([3,2,4], 6))//Expected [1,2]
+console.log(twoSum([3,2,3], 6))//Expected [0,2]
+console.log(twoSum([2], 12))//Expected []
