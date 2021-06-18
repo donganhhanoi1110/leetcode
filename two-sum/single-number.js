@@ -4,7 +4,32 @@
  * @return {number|null}
  */
 var singleNumber = function(nums) {
-    let single = null
+    let result = findSingle(nums)
+    return result.length > 0 ? nums[0] : null
+};
+
+/**
+ * https://leetcode.com/problems/single-number-ii/
+ * @param nums
+ * @returns {*|null}
+ */
+function singleNumberII(nums) {
+    let result = findSingle(nums)
+    return result.length > 0 ? nums[0] : null
+};
+
+
+/**
+ * https://leetcode.com/problems/single-number-iii/
+ * @param nums
+ * @returns {*[]}
+ */
+function singleNumberIII(nums) {
+    return findSingle(nums)
+}
+
+function findSingle(nums) {
+    let result = []
     let map = new Map();
     let duplicatedMap = new Map();
     nums.forEach(num => {
@@ -16,16 +41,13 @@ var singleNumber = function(nums) {
     })
     nums.forEach(num => {
         if (duplicatedMap.get(num) == null) {
-            single = num
-
+           result.push(num)
         }
     })
-    return single
-};
-
-
-console.log(singleNumber([4,2,1,2,1,0,0]))
-console.log(singleNumber([
+    return result
+}
+console.log(singleNumber([4,2,1,2,1,0,0])) //4
+console.log(singleNumber([ // -77
     229,
     -967,
     355,
