@@ -46,22 +46,9 @@ function factorialByMemoizationTopDown(n) {
     return (cache[n] = n * factorialByMemoizationTopDown(n-1))
 }
 
-console.log('\n>>Tradition Recursive<<')
-console.log(factorialByTabulationBottomUp(4))//24
-console.log(factorialByTabulationBottomUp(5))//120
-console.log(factorialByTabulationBottomUp(8))//40320
-console.log(factorialByTabulationBottomUp(10))//3628800
-console.log('\n>>factorialByTabulationBottomUp<<')
-console.log(factorialByTabulationBottomUp(0))
-console.log(factorialByTabulationBottomUp(1))
-console.log(factorialByTabulationBottomUp(2))
-console.log(factorialByTabulationBottomUp(3))
-console.log(factorialByTabulationBottomUp(4))//24
-console.log(factorialByTabulationBottomUp(5))//120
-console.log(factorialByTabulationBottomUp(8))//40320
-console.log(factorialByTabulationBottomUp(10))//3628800
-console.log('\n>>factorialByMemoizationTopDown<<')
-console.log(factorialByMemoizationTopDown(4))//24
-console.log(factorialByMemoizationTopDown(5))//120
-console.log(factorialByMemoizationTopDown(8))//40320
-console.log(factorialByMemoizationTopDown(10))//3628800
+//or exports = {function1}
+module.exports = {
+    factorialByTabulationBottomUp,
+    factorialByMemoizationTopDown,
+    factorialByRecursive
+}
