@@ -36,6 +36,25 @@ var maxProfit = function(prices) {
     return maxProfitNum
 };
 
+/**
+ * Failed with Time exceeded
+ * Test case ~93714 elements: https://leetcode.com/submissions/detail/513848651/testcase/
+ * @param prices
+ * @returns {number}
+ */
+function maxProfit2(prices) {
+    let max = 0
+    for (let i = 0; i < prices.length; i++) {
+        for (let j=i+1; j < prices.length; j++) {
+            let profit = prices[j] - prices[i]
+            if (profit > max) {
+                max = profit
+            }
+        }
+    }
+   return max
+}
+
 let findMin = function(prices) {
     let result = [0,prices[0]]
     for (let i = 0; i < prices.length; i++) {
@@ -50,3 +69,7 @@ let findMin = function(prices) {
 
 console.log(maxProfit([7,1,5,3,6,4])) // 5
 console.log(maxProfit([7,6,4,3,1])) // 0
+console.log(maxProfit([2,4,1])) // 2 => Failed
+console.log(maxProfit2([7,1,5,3,6,4])) // 5
+console.log(maxProfit2([7,6,4,3,1])) // 0
+console.log(maxProfit2([2,4,1])) // 2
