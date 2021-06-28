@@ -37,6 +37,8 @@ var maxProfit = function(prices) {
 };
 
 /**
+ * Time: O(n^2) - Loop run n * (n-1) / 2 times
+ * Space: O(1) - Only 2 variables to be used => max and profit
  * Failed with Time exceeded
  * Test case ~93714 elements: https://leetcode.com/submissions/detail/513848651/testcase/
  * @param prices

@@ -15,6 +15,8 @@
  */
 
 /**
+ * Time: O(n)
+ * Space: O(n)
  * @param {number[]} prices
  * @return {number}
  */
@@ -30,6 +32,25 @@ var maxProfit = function(prices) {
     }
 
 };
+
+/**
+ * Time complexity: O(n) - only 1 loop is needed
+ * Space: O(1) because only 2 variables are used to save (memorized) data
+ * @param prices
+ * @returns {number}
+ */
+function maxProfit2(prices) {
+    let minPrice = prices[0];
+    let maxProfit = 0;
+    for (let i = 0; i < prices.length; i++) {
+        if (prices[i] < minPrice) {
+            minPrice = prices[i]
+        } else if (prices[i] - minPrice > maxProfit) {
+            maxProfit = prices[i] - minPrice
+        }
+    }
+    return maxProfit
+}
 
 let findMax = function(prices,i, max , minPrice) {
 
@@ -48,3 +69,11 @@ console.log(maxProfit([7,6,4,3,1])) // 0
 console.log(maxProfit([2,4,1])) // 2
 console.log(maxProfit([5,7,1,4,8,2,6,5,0])) // 7
 console.log(maxProfit([3,2,6,5,0,3])) // 4
+console.log("---------")
+console.log(maxProfit2([1,2,4])) // 3
+console.log(maxProfit2([1,2])) // 1
+console.log(maxProfit2([7,1,5,3,6,4])) // 5
+console.log(maxProfit2([7,6,4,3,1])) // 0
+console.log(maxProfit2([2,4,1])) // 2
+console.log(maxProfit2([5,7,1,4,8,2,6,5,0])) // 7
+console.log(maxProfit2([3,2,6,5,0,3])) // 4
