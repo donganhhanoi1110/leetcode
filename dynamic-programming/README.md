@@ -18,6 +18,16 @@ and if we optimize it by storing solutions of subproblems, time complexity reduc
 
 ##Steps to solve a dynamic programming
 1. Identify if it is a Dynamic Programming problem
-2. Decide a state expression with least parameters.
+2. Decide a state expression with the least parameters.
 3. Formulate state relationship
+ 
+       Make it work
+          visualize the problem as a tree
+          implement the tree using recursion
+          test it
+       Make it efficient 
+         add a memo (memoization) object
+         add a base case to return memo values
+         store return values into the memo
+      
 4. Do tabulation ( or add memoization)
